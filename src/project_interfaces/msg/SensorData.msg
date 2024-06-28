@@ -1,4 +1,4 @@
-int sensorId
+string sensorid
 string data
 builtin_interfaces/Time timestamp
 geometry_msgs/Point position

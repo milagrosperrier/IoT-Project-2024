@@ -57,7 +57,7 @@ class SensorController(Node):
         msg = SensorData()
         msg.data = f"{self.generate_data()}!"
         # We inform which sensor sensed the data
-        msg.sensorId = id
+        msg.sensorId = f"{id}"
         # Use time to calculate packet delay
         msg.timestamp = self.event_scheduler.current_time
         # Position of sensor
