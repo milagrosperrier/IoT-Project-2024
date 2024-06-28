@@ -1,0 +1,4 @@
+int sensorId
+string data
+builtin_interfaces/Time timestamp
+geometry_msgs/Point position

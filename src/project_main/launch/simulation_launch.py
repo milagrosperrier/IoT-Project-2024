@@ -177,6 +177,17 @@ def generate_launch_description():
             ]
         )
     )
+    targets_to_spawn.append(
+        Node(
+            package="project_main",
+            executable="base_station",
+            arguments=[
+                f"{NUMBER_OF_BALLOONS}"
+            ],
+            namespace="BaseStation",
+            name="BaseStation"
+        )
+    )
 
 
     targets_to_spawn.append(
