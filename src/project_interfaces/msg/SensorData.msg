@@ -1,3 +1,3 @@
-string sensorId
+string sensorid
 string data
-builtin_interfaces/Time timestamp
+float64 timestamp

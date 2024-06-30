@@ -103,7 +103,8 @@ class SimulationManager(Node):
 
 
     def calculate_metrics(self):
-        packet_loss = (self.total_packets_sent - self.total_packets_received) / self.total_packets_sent
+
+        packet_loss = (self.total_packets_sent - self.total_packets_received) / self.total_packets_sent if (self.total_packets_sent!=0) else 0
         average_distance = sum(self.packet_distances) / len(self.packet_distances) if self.packet_distances else 0
         average_delay = sum(self.packet_delays) / len(self.packet_delays) if self.packet_delays else 0
 

@@ -45,7 +45,7 @@ class SensorController(Node):
         id = self.id.get_parameter_value().integer_value
 
         msg = SensorData()
-        msg.sensorId = f"{id}"
+        msg.sensorid = f"{id}"
         msg.data = f"{self.generate_data()}"
         msg.timestamp = self.event_scheduler.current_time
 
