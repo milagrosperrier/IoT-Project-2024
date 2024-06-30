@@ -57,6 +57,16 @@ class BaseStation(Node):
     def balloon_callback(self, balloon_id, msg: SensorData):
         # Here we should call a method that calculates all metrics from the received data
         self.get_logger().info(f'Received data from Balloon_{balloon_id}: {msg.data}')
+    
+    def calculate_delay(self, ):
+        pass
+
+    def calculate_distance(self, ):
+        pass
+
+    def calculate_lostdata(self, ):
+        # Since packets are in order sequence we can see those that never arrived.
+        pass
 
 
     # Base station stores its own position
