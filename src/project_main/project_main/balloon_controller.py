@@ -7,7 +7,7 @@ from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.executors import MultiThreadedExecutor
 
-from project_interfaces import SensorData
+from project_interfaces.msg import SensorData
 from geometry_msgs.msg import Point, Vector3, Twist
 from nav_msgs.msg import Odometry
 

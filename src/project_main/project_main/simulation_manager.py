@@ -1,6 +1,7 @@
 import sys
 import math
 import time
+import subprocess
 
 import rclpy
 from rclpy.node import Node
@@ -74,6 +75,7 @@ class SimulationManager(Node):
     def store_base_station_position(self, position: Odometry):
         self.base_station_position = position.pose.pose.position
 
+
     def forward_data(self, sensor_id, msg: SensorData):
         self.total_packets_sent += 1
 
@@ -103,7 +105,6 @@ class SimulationManager(Node):
 
 
     def calculate_metrics(self):
-
         packet_loss = (self.total_packets_sent - self.total_packets_received) / self.total_packets_sent if (self.total_packets_sent!=0) else 0
         average_distance = sum(self.packet_distances) / len(self.packet_distances) if self.packet_distances else 0
         average_delay = sum(self.packet_delays) / len(self.packet_delays) if self.packet_delays else 0
@@ -120,7 +121,6 @@ def main():
     try:
         executor.spin()
     finally:
-        # This block is executed when the executor is stopped
         packet_loss, avg_distance, avg_delay = simulation_manager.calculate_metrics()
         print(f"Packet Loss: {packet_loss * 100:.2f}%")
         print(f"Average Distance Traveled by Packets: {avg_distance:.2f} units")
