@@ -61,7 +61,7 @@ class SimulationManager(Node):
         # To get the base station position, for the 'traveled distance' metric
         self.create_subscription(
             Odometry,
-            '/base_station/odometry',
+            '/BaseStation/odometry',
             self.store_base_station_position,
             10
         )
@@ -122,9 +122,9 @@ def main():
         executor.spin()
     finally:
         packet_loss, avg_distance, avg_delay = simulation_manager.calculate_metrics()
-        print(f"Packet Loss: {packet_loss * 100:.2f}%")
-        print(f"Average Distance Traveled by Packets: {avg_distance:.2f} units")
-        print(f"Average Packet Delay: {avg_delay:.2f} seconds")
+        simulation_manager.get_logger().info(f"Packet Loss: {packet_loss * 100:.2f}%")
+        simulation_manager.get_logger().info(f"Average Distance Traveled by Packets: {avg_distance:.2f} units")
+        simulation_manager.get_logger().info(f"Average Packet Delay: {avg_delay:.2f} seconds")
         
         executor.shutdown()
         simulation_manager.destroy_node()

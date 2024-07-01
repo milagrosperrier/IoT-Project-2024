@@ -173,7 +173,7 @@ def generate_launch_description():
             package="ros_gz_bridge",
             executable="parameter_bridge",
             arguments=[
-            f"/base_station/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
+            f"/BaseStation/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
             ]
         )
     )
