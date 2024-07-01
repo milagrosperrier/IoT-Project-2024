@@ -96,7 +96,7 @@ class SimulationManager(Node):
 
                         # To calculate packet loss later
                         self.total_packets_received += 1
-                        received_time = time.time()
+                        received_time = float(time.time())
 
                         # Calculate packet delay since it was generated
                         delay = received_time - msg.timestamp  

@@ -1,4 +1,5 @@
 import rclpy
+import time
 from rclpy.node import Node
 
 from rclpy.executors import MultiThreadedExecutor
@@ -47,7 +48,7 @@ class SensorController(Node):
         msg = SensorData()
         msg.sensorid = str(self.id)
         msg.data = str(self.generate_data())
-        msg.timestamp = float(self.event_scheduler.current_time)
+        msg.timestamp = float(time.time())
 
         self.tx_topic.publish(msg) 
 
