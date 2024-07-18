@@ -1,9 +1,10 @@
 import rclpy
+import time
 from rclpy.node import Node
 
 from rclpy.executors import MultiThreadedExecutor
 
-from std_msgs.msg import String
+from project_interfaces.msg import SensorData
 from rosgraph_msgs.msg import Clock
 
 from sim_utils import EventScheduler
@@ -17,7 +18,7 @@ class SensorController(Node):
         super().__init__('sensor_controller')
 
         self.tx_topic = self.create_publisher(
-            String,
+            SensorData,
             'tx_data',
             10
         )
@@ -44,8 +45,10 @@ class SensorController(Node):
 
         id = self.id.get_parameter_value().integer_value
 
-        msg = String()
-        msg.data = f"Sensor data: {id}_{self.generate_data()}!"
+        msg = SensorData()
+        msg.sensorid = str(self.id)
+        msg.data = str(self.generate_data())
+        msg.timestamp = float(time.time())
 
         self.tx_topic.publish(msg) 
 
