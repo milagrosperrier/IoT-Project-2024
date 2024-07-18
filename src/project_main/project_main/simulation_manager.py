@@ -1,3 +1,4 @@
+import subprocess
 import sys
 import math
 import time
@@ -122,10 +123,24 @@ def main():
         executor.spin()
     finally:
         packet_loss, avg_distance, avg_delay = simulation_manager.calculate_metrics()
-        simulation_manager.get_logger().info(f"Packet Loss: {packet_loss * 100:.2f}%")
-        simulation_manager.get_logger().info(f"Average Distance Traveled by Packets: {avg_distance:.2f} units")
-        simulation_manager.get_logger().info(f"Average Packet Delay: {avg_delay:.2f} seconds")
-        
+
+        # Log metrics to console and also launch a new terminal window to display them
+        print(f"Packet Loss: {packet_loss * 100:.2f}%")
+        print(f"Average Distance Traveled by Packets: {avg_distance:.2f} units")
+        print(f"Average Packet Delay: {avg_delay:.2f} seconds")
+
+        # Show log messages in a new terminal window
+        log_message = (
+            f"Packet Loss: {packet_loss * 100:.2f}%\n"
+            f"Average Distance Traveled by Packets: {avg_distance:.2f} units\n"
+            f"Average Packet Delay: {avg_delay:.2f} seconds"
+        )
+ # Open a new terminal window and display the log messages
+        subprocess.Popen(['xterm', '-e', 'echo "{}"; read -p "Press enter to exit..."'.format(log_message)])
+
         executor.shutdown()
         simulation_manager.destroy_node()
         rclpy.shutdown()
+
+if __name__ == '_main_':
+    main()
